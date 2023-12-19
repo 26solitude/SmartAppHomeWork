@@ -7,5 +7,7 @@ data class KpopMember(
     val Company: String,
     val MemberName: String,
     val BirthDate: String,
-    val Position: String
+    val Position: String,
+    val FullBodyImageURL: String,
+    val FaceImageURL: String,
 )

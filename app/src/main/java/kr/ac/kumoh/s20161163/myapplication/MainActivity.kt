@@ -61,7 +61,6 @@ fun MainScreen(viewModel: KpopMemeberViewModel) {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-//            MemberList(memberList)
             MemberApp(memberList)
         }
     }

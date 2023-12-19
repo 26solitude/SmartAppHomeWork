@@ -12,6 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class KpopMemeberViewModel() : ViewModel() {
     private val SERVER_URL = "https://port-0-s23w10backend-3yl7k2blonrwyx5.sel5.cloudtype.app/"
     private val kpopApi: KpopApi
+
+
     private val _memberList = MutableLiveData<List<KpopMember>>()
     val memberList: LiveData<List<KpopMember>>
         get() = _memberList

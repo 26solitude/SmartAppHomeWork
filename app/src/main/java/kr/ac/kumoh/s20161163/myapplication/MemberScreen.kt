@@ -21,12 +21,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -115,7 +112,7 @@ fun Member(
                 .padding(8.dp)
         ) {
             AsyncImage(
-                model = "https://picsum.photos/300/300?random=$index",
+                model = member.FullBodyImageURL,
                 contentDescription = "노래 앨범 이미지",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -153,8 +150,6 @@ fun memberEtc(member: KpopMember) {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        RatingBar(member.MemberID % 3 + 1)
-        Spacer(modifier = Modifier.height(16.dp))
         Text(
             member.GroupName,
             fontSize = 40.sp,
@@ -164,7 +159,7 @@ fun memberEtc(member: KpopMember) {
         Spacer(modifier = Modifier.height(16.dp))
 
         AsyncImage(
-            model = "https://picsum.photos/300/300?random=${member.MemberID}",
+            model = "${member.FullBodyImageURL}",
             contentDescription = "멤버 이미지",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -175,7 +170,7 @@ fun memberEtc(member: KpopMember) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
-                model = "https://i.pravatar.cc/100?u=${member.GroupName}",
+                model = "${member.FaceImageURL}",
                 contentDescription = "가수 이미지",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -187,7 +182,7 @@ fun memberEtc(member: KpopMember) {
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            "생일: ${member.BirthDate}\n데뷔: ${member.DebutDate}\n포지션: ${member.Position}\n소속 회사: ${member.Company}",
+            "생일: ${member.BirthDate.substring(0, 10)}\n데뷔: ${member.DebutDate.substring(0, 10)}\n포지션: ${member.Position}\n소속 회사: ${member.Company}",
             fontSize = 15.sp,
         )
         Spacer(modifier = Modifier.height(32.dp))
@@ -208,20 +203,6 @@ fun memberEtc(member: KpopMember) {
                 Spacer(modifier = Modifier.width(16.dp))
                 Text("YouTube 검색")
             }
-        }
-    }
-}
-
-@Composable
-fun RatingBar(stars: Int) {
-    Row {
-        repeat(stars) {
-            Icon(
-                imageVector = Icons.Filled.Favorite,
-                contentDescription = "favorite",
-                modifier = Modifier.size(48.dp),
-                tint = Color.Red
-            )
         }
     }
 }
